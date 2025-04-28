@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>xz grad</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Animated Camouflage Background -->
+  <div id="camo"></div>
+
+  <!-- Header / Logo Area -->
+  <header>
+    <div id="logo">xz grad</div>
+    <div id="description">x xxxx xxx xx'x xxxxxxx. Zz xx zxzx xzxzxzx.</div>
+  </header>
+
+  <!-- Posts Container -->
+  <main id="posts"></main>
+
+  <!-- Template for a post -->
+  <template id="post-template">
+    <article class="post">
+      <div class="post-date"></div>
+      <div class="post-content"></div>
+      <div class="post-actions">
+        <span class="like-btn">❤</span>
+        <span class="like-count">0</span>
+      </div>
+    </article>
+  </template>
+
+  <!-- Core Script -->
+  <script>
+// ===== Logo Glitch Animation =====
+const originalText = "xz grad";
+const logo = document.getElementById('logo');
+const glitchChars = "!@#$%^&*()-_=+[]{};:,.<>?/\\|";
+let progress = 0;
+let direction = 1; // 1 = glitching, -1 = restoring
+
+function glitchStep() {
+  let glitched = '';
+  for (let i = 0; i < originalText.length; i++) {
+    if (Math.random() < progress) {
+      glitched += glitchChars[Math.floor(Math.random() * glitchChars.length)];
+    } else {
+      glitched += originalText[i];
+    }
+  }
+  logo.textContent = glitched;
+}
+
+function runGlitch() {
+  const interval = setInterval(() => {
+    progress = Math.min(1, Math.max(0, progress + direction * 0.033));
+    glitchStep();
+    if ((direction === 1 && progress === 1) || (direction === -1 && progress === 0)) {
+      clearInterval(interval);
+      setTimeout(() => { direction *= -1; runGlitch(); }, 6000);
+    }
+  }, 100);
+}
+runGlitch();
+
+// ===== Auto-date & Manual Post Insertion =====
+const postsContainer = document.getElementById('posts');
+const template = document.getElementById('post-template');
+
+function addPost(htmlContent) {
+  const clone = template.content.cloneNode(true);
+  const dateEl = clone.querySelector('.post-date');
+  const contentEl = clone.querySelector('.post-content');
+  const likeBtn = clone.querySelector('.like-btn');
+  const likeCount = clone.querySelector('.like-count');
+
+  // Set date once at creation (frozen)
+  const now = new Date();
+  dateEl.textContent = now.toLocaleString();
+
+  // Insert your HTML content
+  contentEl.innerHTML = htmlContent;
+
+  // Like button logic using localStorage
+  const key = `likes_${Date.now()}`;
+  likeCount.textContent = localStorage.getItem(key) || 0;
+  likeBtn.onclick = () => {
+    let count = Number(localStorage.getItem(key) || 0) + 1;
+    localStorage.setItem(key, count);
+    likeCount.textContent = count;
+  };
+
+  // Prepend new posts (new at top)
+  postsContainer.prepend(clone);
+}
+
+// ===== USAGE =====
+// Call addPost with your HTML for each new post below:
+// addPost(`<p>Your post text here.</p>`);
+// addPost(`<p>Another post with <img src='./img/example.jpg' alt='img'></p>`);
+
+  </script>
+</body>
+</html>
