@@ -1,93 +1,68 @@
 body {
-  margin: 0;
-  background: black;
-  color: #00ff00;
-  font-family: 'Courier New', Courier, monospace;
-  overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+    background-color: #000; /* black fallback */
+    color: #ccffcc; /* greenish white text */
+    font-family: monospace;
+    overflow-x: hidden;
+    position: relative;
 }
 
-.background {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: radial-gradient(circle at 20% 20%, transparent 0%, #0f0 2%, transparent 4%),
-              radial-gradient(circle at 80% 80%, transparent 0%, #0f0 2%, transparent 4%),
-              radial-gradient(circle at 50% 50%, transparent 0%, #0f0 1.5%, transparent 3%);
-  background-size: 200% 200%;
-  background-repeat: repeat;
-  opacity: 0.05;
-  z-index: 0;
-  animation: camoMove 120s infinite linear;
+/* Camouflage Background */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 200%;
+    height: 200%;
+    background:
+        radial-gradient(circle at 30% 30%, #2e4d22 10%, transparent 11%) repeat,
+        radial-gradient(circle at 70% 20%, #3b592d 8%, transparent 10%) repeat,
+        radial-gradient(circle at 50% 80%, #1a2f13 10%, transparent 12%) repeat,
+        radial-gradient(circle at 80% 70%, #4b6840 9%, transparent 11%) repeat,
+        radial-gradient(circle at 20% 80%, #2c4420 8%, transparent 9%) repeat,
+        radial-gradient(circle at 10% 50%, #1b2e14 12%, transparent 14%) repeat;
+    background-size: 300px 300px;
+    opacity: 0.15;
+    animation: moveCamo 180s linear infinite;
+    z-index: -1;
 }
 
-@keyframes camoMove {
-  0% { background-position: 0% 0%; }
-  50% { background-position: 100% 100%; }
-  100% { background-position: 0% 0%; }
+/* Move camo pattern slowly */
+@keyframes moveCamo {
+    0% { transform: translate(0, 0) scale(1); }
+    50% { transform: translate(-25%, -25%) scale(1.1); }
+    100% { transform: translate(0, 0) scale(1); }
 }
 
-header {
-  position: relative;
-  text-align: center;
-  margin-top: 2rem;
-  z-index: 1;
+/* Header / Logo */
+header, .logo, h1 {
+    color: #00ff00; /* bright green */
+    text-align: center;
+    padding: 20px;
 }
 
-h1 {
-  font-size: 2.5rem;
-  color: white;
-}
-
-.subtitle {
-  font-size: 1rem;
-  color: #aaa;
-}
-
-main {
-  padding: 2rem;
-  z-index: 1;
-  position: relative;
-}
-
+/* Post settings */
 .post {
-  background: #111;
-  border: 1px solid #0f0;
-  margin-bottom: 2rem;
-  padding: 1rem;
-  border-radius: 5px;
+    background: transparent;
+    border: 2px solid #00ff00;
+    border-radius: 0;
+    padding: 20px;
+    margin: 20px auto;
+    width: 80%;
+    color: #ccffcc;
 }
 
-.post-footer {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 1rem;
-  font-size: 0.8rem;
-  opacity: 0.5;
+/* Post title */
+.post h2, .post-title {
+    color: #00ff00;
 }
 
-.like-button {
-  background: none;
-  border: none;
-  color: #0f0;
-  cursor: pointer;
-  font-size: 1rem;
-}
-
-.like-button:hover {
-  color: #f00;
-}
-
-img {
-  max-width: 100%;
-  height: auto;
-  margin-top: 1rem;
-  border-radius: 5px;
-}
-
-@media (max-width: 600px) {
-  h1 { font-size: 2rem; }
-  main { padding: 1rem; }
-  .post { padding: 0.5rem; }
+/* Comment section */
+.comment-section {
+    margin-top: 20px;
+    border-top: 2px solid #00ff00;
+    padding-top: 10px;
+    color: #ccffcc;
 }
