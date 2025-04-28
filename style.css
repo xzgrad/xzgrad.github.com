@@ -19,6 +19,13 @@ header, .logo, h1 {
     padding: 20px;
 }
 
+
+.formatted-text {
+  white-space: pre-wrap; /* This is the magic! */
+}
+
+
+
 /* Post settings */
 .post {
     background: rgba(0, 0, 0, 0.7); /* Optional: Add a semi-transparent background for better readability */
