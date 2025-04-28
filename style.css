@@ -1,85 +1,93 @@
-html, body {
+body {
   margin: 0;
-  padding: 0;
-  width: 100%;
-  height: 100%;
-  background: #000;
-  color: #ccc;
+  background: black;
+  color: #00ff00;
   font-family: 'Courier New', Courier, monospace;
   overflow-x: hidden;
 }
 
-/* Camouflage Outline Animation */
-#camo {
+.background {
   position: fixed;
-  top: 0; left: 0;
-  width: 200%; height: 200%;
-  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200"><path d="M10 10h180v180H10z" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="2"/></svg>') repeat;
-  animation: moveCamo 60s linear infinite;
-  pointer-events: none;
-  z-index: -1;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at 20% 20%, transparent 0%, #0f0 2%, transparent 4%),
+              radial-gradient(circle at 80% 80%, transparent 0%, #0f0 2%, transparent 4%),
+              radial-gradient(circle at 50% 50%, transparent 0%, #0f0 1.5%, transparent 3%);
+  background-size: 200% 200%;
+  background-repeat: repeat;
+  opacity: 0.05;
+  z-index: 0;
+  animation: camoMove 120s infinite linear;
 }
-@keyframes moveCamo {
-  from { transform: translate(0,0); }
-  to { transform: translate(-50%, -50%); }
+
+@keyframes camoMove {
+  0% { background-position: 0% 0%; }
+  50% { background-position: 100% 100%; }
+  100% { background-position: 0% 0%; }
 }
 
 header {
+  position: relative;
   text-align: center;
-  padding: 2rem 1rem;
-}
-#logo {
-  font-size: 3rem;
-  color: #0f0;
-  user-select: none;
-}
-#description {
-  font-size: 1rem;
-  color: #888;
-  margin-top: 0.5rem;
+  margin-top: 2rem;
+  z-index: 1;
 }
 
-/* Posts */
-#posts {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 1rem;
+h1 {
+  font-size: 2.5rem;
+  color: white;
 }
+
+.subtitle {
+  font-size: 1rem;
+  color: #aaa;
+}
+
+main {
+  padding: 2rem;
+  z-index: 1;
+  position: relative;
+}
+
 .post {
-  border-top: 1px solid rgba(255,255,255,0.1);
-  padding: 1rem 0;
+  background: #111;
+  border: 1px solid #0f0;
+  margin-bottom: 2rem;
+  padding: 1rem;
+  border-radius: 5px;
 }
-.post-date {
+
+.post-footer {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1rem;
   font-size: 0.8rem;
-  color: #555;
-  margin-bottom: 0.5rem;
+  opacity: 0.5;
 }
-.post-content p {
-  margin: 0.5rem 0;
+
+.like-button {
+  background: none;
+  border: none;
+  color: #0f0;
+  cursor: pointer;
+  font-size: 1rem;
 }
-.post-content img {
+
+.like-button:hover {
+  color: #f00;
+}
+
+img {
   max-width: 100%;
   height: auto;
-  display: block;
-  margin: 0.5rem 0;
-}
-.post-actions {
-  margin-top: 0.5rem;
-}
-.like-btn {
-  cursor: pointer;
-  color: #090;
-  user-select: none;
-  font-size: 1.2rem;
-}
-.like-count {
-  margin-left: 0.5rem;
-  font-size: 1rem;
+  margin-top: 1rem;
+  border-radius: 5px;
 }
 
-/* Mobile Responsive Tweaks */
 @media (max-width: 600px) {
-  #logo { font-size: 2rem; }
-  #posts { padding: 0.5rem; }
+  h1 { font-size: 2rem; }
+  main { padding: 1rem; }
+  .post { padding: 0.5rem; }
 }
-  
