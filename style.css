@@ -36,7 +36,7 @@ header, .logo, h1 {
 
 /* Post settings */
 .post {
-    background: rgba(0, 0, 0, 0.7); /* Optional: Add a semi-transparent background for better readability */
+    background: rgba(0, 0, 0, 0.0); /* Optional: Add a semi-transparent background for better readability */
     border: 2px solid #00ff00;
     border-radius: 0;
     padding: 20px;
