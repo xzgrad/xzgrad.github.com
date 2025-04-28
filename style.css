@@ -1,0 +1,85 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  background: #000;
+  color: #ccc;
+  font-family: 'Courier New', Courier, monospace;
+  overflow-x: hidden;
+}
+
+/* Camouflage Outline Animation */
+#camo {
+  position: fixed;
+  top: 0; left: 0;
+  width: 200%; height: 200%;
+  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200"><path d="M10 10h180v180H10z" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="2"/></svg>') repeat;
+  animation: moveCamo 60s linear infinite;
+  pointer-events: none;
+  z-index: -1;
+}
+@keyframes moveCamo {
+  from { transform: translate(0,0); }
+  to { transform: translate(-50%, -50%); }
+}
+
+header {
+  text-align: center;
+  padding: 2rem 1rem;
+}
+#logo {
+  font-size: 3rem;
+  color: #0f0;
+  user-select: none;
+}
+#description {
+  font-size: 1rem;
+  color: #888;
+  margin-top: 0.5rem;
+}
+
+/* Posts */
+#posts {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+.post {
+  border-top: 1px solid rgba(255,255,255,0.1);
+  padding: 1rem 0;
+}
+.post-date {
+  font-size: 0.8rem;
+  color: #555;
+  margin-bottom: 0.5rem;
+}
+.post-content p {
+  margin: 0.5rem 0;
+}
+.post-content img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0.5rem 0;
+}
+.post-actions {
+  margin-top: 0.5rem;
+}
+.like-btn {
+  cursor: pointer;
+  color: #090;
+  user-select: none;
+  font-size: 1.2rem;
+}
+.like-count {
+  margin-left: 0.5rem;
+  font-size: 1rem;
+}
+
+/* Mobile Responsive Tweaks */
+@media (max-width: 600px) {
+  #logo { font-size: 2rem; }
+  #posts { padding: 0.5rem; }
+}
+  
