@@ -6,34 +6,10 @@ body {
     font-family: monospace;
     overflow-x: hidden;
     position: relative;
-}
-
-/* Camouflage Background */
-body::before {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 200%;
-    height: 200%;
-    background:
-        radial-gradient(circle at 30% 30%, #2e4d22 10%, transparent 11%) repeat,
-        radial-gradient(circle at 70% 20%, #3b592d 8%, transparent 10%) repeat,
-        radial-gradient(circle at 50% 80%, #1a2f13 10%, transparent 12%) repeat,
-        radial-gradient(circle at 80% 70%, #4b6840 9%, transparent 11%) repeat,
-        radial-gradient(circle at 20% 80%, #2c4420 8%, transparent 9%) repeat,
-        radial-gradient(circle at 10% 50%, #1b2e14 12%, transparent 14%) repeat;
-    background-size: 300px 300px;
-    opacity: 0.15;
-    animation: moveCamo 180s linear infinite;
-    z-index: -1;
-}
-
-/* Move camo pattern slowly */
-@keyframes moveCamo {
-    0% { transform: translate(0, 0) scale(1); }
-    50% { transform: translate(-25%, -25%) scale(1.1); }
-    100% { transform: translate(0, 0) scale(1); }
+    background-image: url('https://i.ibb.co/d4HTdRPz/image-9.png');
+    background-size: cover; /* or contain, or specific dimensions */
+    background-repeat: no-repeat;
+    background-attachment: fixed; /* to make it fixed during scrolling */
 }
 
 /* Header / Logo */
@@ -45,7 +21,7 @@ header, .logo, h1 {
 
 /* Post settings */
 .post {
-    background: transparent;
+    background: rgba(0, 0, 0, 0.7); /* Optional: Add a semi-transparent background for better readability */
     border: 2px solid #00ff00;
     border-radius: 0;
     padding: 20px;
