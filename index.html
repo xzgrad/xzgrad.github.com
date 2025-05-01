@@ -261,34 +261,34 @@ The good stuff.</p>
   <script>
     const logo = document.getElementById('logo');
 
-    // Function to fetch text from the provided source and extract words
-    async function fetchWords() {
-      try {
-        // URL to the publicly available PDF file
-        const response = await fetch("https://www.ijsr.net/archive/v14i1/SR25102113916.pdf");
-        const text = await response.text();
-        
-        // Use regex to extract words from the text
-        const words = text.match(/\b\w+\b/g);
-        
-        if (words && words.length > 0) {
-          startRandomLogoText(words);
-        }
-      } catch (error) {
-        console.error('Error fetching or processing text:', error);
-      }
+// Function to fetch text from the provided source and extract full words
+async function fetchWords() {
+  try {
+    // URL to the publicly available `.txt` file
+    const response = await fetch("https://ufdcimages.uflib.ufl.edu/AA/00/01/17/78/00001/AA00011778_00001_0235.txt");
+    const text = await response.text();
+    
+    // Use regex to extract full words from the text
+    const words = text.match(/\b\w+\b/g); // Extracts complete words
+    
+    if (words && words.length > 0) {
+      startRandomLogoText(words);
     }
+  } catch (error) {
+    console.error('Error fetching or processing text:', error);
+  }
+}
 
-    // Function to start displaying random words from the list in the logo
-    function startRandomLogoText(wordList) {
-      setInterval(() => {
-        const randomWord = wordList[Math.floor(Math.random() * wordList.length)];
-        logo.textContent = randomWord;
-      }, 1000); // Update the word every second
-    }
+// Function to start displaying random full words from the list in the logo
+function startRandomLogoText(wordList) {
+  setInterval(() => {
+    const randomWord = wordList[Math.floor(Math.random() * wordList.length)];
+    logo.textContent = randomWord; // Update logo with a full random word
+  }, 1000); // Change the word every second
+}
 
-    // Start the process by fetching words and updating the logo
-    fetchWords();
+// Start the process by fetching words and updating the logo
+fetchWords();
 
     // Post Date Handling
     const posts = document.querySelectorAll('.post-date');
